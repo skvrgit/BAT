@@ -1,7 +1,7 @@
 
 @ECHO OFF
 
-SET BATDIR=C:\Users\kanno\Desktop\BAT
+SET BATDIR=ワーキングディレクトリ
 SET LOGDIR=%BATDIR%\LOG
 SET DLOGDIR=%LOGDIR%\daily
 SET WLOGDIR=%LOGDIR%\weekly
