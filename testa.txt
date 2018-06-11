@@ -1,0 +1,18 @@
+node{
+    try{
+        withEnv(['PYTHON=I:\\stdenv\\software\\python35\\python']){
+            stage('git pull'){
+                git url:'https://github.com/skvrgit/BAT.git', branch: 'master'
+            }
+        
+            stage('execute python script'){
+                bat '%PYTHON% test.py --source .\\log --basedate 20180611'
+            }
+        }
+    } catch(e) {
+        currentBuild.result = "FAILED"
+        def fileContent = readFile('.\\errorlog.txt')
+        emailext body: "${fileContent}", subject: "Job '${env.JOB_NAME}'", to: 'skvr0317@gmail.com', from:'skvr0317@gmail.com'
+        //mail(to:'skvr0317@gmail.com',subject:"Job '${env.JOB_NAME}'", body:"${fileContent}")
+    }
+}
