@@ -55,6 +55,8 @@ if __name__ == "__main__":
 
     if isError:
         print(contents)
+        logfile = open('./errorlog.txt','a')
+        logfile.write(contents)
         sys.exit(1)
     else:
         sys.exit(0)
